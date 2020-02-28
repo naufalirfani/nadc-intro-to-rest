@@ -33,4 +33,3 @@
   root-package = "github.com/ridwanakf/nadc-intro-to-rest"
   go-version = "go1.13.6"
   install = [ "./..." ]
-  ensure = true
