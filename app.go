@@ -58,5 +58,5 @@ func main() {
 	initRouter(router, handler)
 
 	fmt.Printf("Apps served on :%d\n", args.Port)
-	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%d", args.Port), router))
+	log.Fatal(http.ListenAndServe(":"+ string(args.Port), router))
 }
