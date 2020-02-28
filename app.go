@@ -25,7 +25,7 @@ func initFlags(args *internal.Args) {
 func initHandler(handler *internal.Handler) error {
 
 	// Initialize SQL DB
-	db, err := sql.Open("postgres", "postgres://username:password@host-address:port/database-name?sslmode=disable")
+	db, err := sql.Open("postgres", "postgres://cgvrypmrzbfzqd:e7869a8aff75aa1cb3747db0d40f9519f1eb6afce2b188050da8fabf21793e68@18.210.51.239:5432/dcffscbsa1dabf?sslmode=require")
 	if err != nil {
 		return err
 	}
@@ -47,6 +47,10 @@ func initRouter(router *httprouter.Router, handler *internal.Handler) {
 
 	//Book API paths
 	router.GET("/book/:bookID", handler.GetBookByID)
+	router.POST("/book", handler.InsertNewBook)
+	router.PUT("/book/:bookID", handler.UpdateBookRating)
+	router.DELETE("/book/:bookID", handler.DeleteBookByID)
+	router.GET("/search", handler.SearchBookByName)
 
 	// `httprouter` library uses `ServeHTTP` method for it's 404 pages
 	router.NotFound = handler
