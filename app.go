@@ -42,7 +42,11 @@ func initHandler(handler *internal.Handler) error {
 
 func initRouter(router *httprouter.Router, handler *internal.Handler) {
 
+	//Default path
 	router.GET("/", handler.Index)
+
+	//Book API paths
+	router.GET("/book/:bookID", handler.GetBookByID)
 
 	// `httprouter` library uses `ServeHTTP` method for it's 404 pages
 	router.NotFound = handler
