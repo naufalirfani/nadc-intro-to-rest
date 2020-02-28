@@ -14,7 +14,7 @@ import (
 )
 
 func initFlags(args *internal.Args) {
-	port := flag.Int("port", 5000, "port number for your apps")
+	port := flag.Int("PORT", 5000, "port number for your apps")
 	args.Port = *port
 }
 
@@ -58,5 +58,5 @@ func main() {
 	initRouter(router, handler)
 
 	fmt.Printf("Apps served on :%d\n", args.Port)
-	log.Fatal(http.ListenAndServe(":"+ string(args.Port), router))
+	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%d", args.Port), router))
 }
