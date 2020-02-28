@@ -7,7 +7,7 @@ import (
 // Args used for this application
 type Args struct {
 	// Port used by this service
-	Port int
+	Port string
 }
 
 // Handler object used to handle the HTTP API

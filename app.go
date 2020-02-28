@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 
 	"github.com/julienschmidt/httprouter"
 	_ "github.com/lib/pq"
@@ -14,8 +15,11 @@ import (
 )
 
 func initFlags(args *internal.Args) {
-	port := flag.Int("PORT", 5000, "port number for your apps")
-	args.Port = *port
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = *(flag.String("PORT", "5000", "port number for your apps"))
+	}
+	args.Port = port
 }
 
 func initHandler(handler *internal.Handler) error {
@@ -57,6 +61,6 @@ func main() {
 	router := httprouter.New()
 	initRouter(router, handler)
 
-	fmt.Printf("Apps served on :%d\n", args.Port)
-	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%d", args.Port), router))
+	fmt.Println("Apps served on :" + args.Port)
+	log.Fatal(http.ListenAndServe(fmt.Sprintf(":" + args.Port), router))
 }
