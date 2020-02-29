@@ -11,7 +11,7 @@ import (
 
 	"github.com/julienschmidt/httprouter"
 	_ "github.com/lib/pq"
-	"github.com/naufalirfani/nadc-intro-to-rest/internal"
+	"github.com/ridwanakf/nadc-intro-to-rest/internal"
 )
 
 func initFlags(args *internal.Args) {
